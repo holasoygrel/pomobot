@@ -1,0 +1,11 @@
+# NODE 
+node_modules
+
+#VARIABLES DEL SISTEMA
+.env
+
+# CARPETA DE PRODUCCION
+dist
+
+#vs code 
+.vscode
