@@ -67,6 +67,7 @@ Visualiza tus estadísticas, empieza a usar el bot y cada vez que termines un po
 Puedes ver si has trabajado duro puedes consultar tu rango si estas entre los primeros tres mas productivos del servidor, escribiendo
 <br /><br />
 `% rangos` devuelve la lista de los 3 primeros en la tabla de rangos del server.
+<br />
 
 ### :information_source: Ayuda<br/>
 No sabes cuales son los comandos, puedes conocerlos con el comando de ayuda con el que puedes conocer la lista completa de comandos que puedes usar con el bot.
