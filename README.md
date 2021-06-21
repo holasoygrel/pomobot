@@ -39,20 +39,20 @@
 `% pom` empieza un pomodoro con un tiempo preestablecido de 25 minutos <br/>
 `% pom [tiempo]` empieza un pomodoro en un tiempo ingresado<br />
 `% pom pom` empieza un pomodoro de 50 minutos<br/>
-`% pom [tiempo] descanso [tiempo]` establece un pomodoro un pomodoro en x tiempo con un descanso 
+`% pom [tiempo] break [tiempo]` establece un pomodoro un pomodoro en x tiempo con un descanso 
 `% grupo [tiempo]` Empieza un pomodoro grupal <br/>
 `% cancelar` cancela el pomodoro o tu tiempo de descanso <br/>
 
 ### Como configurar los canales para el Pomodoro Grupal:
-1. Para poder ejecutar los comandos grupales se tiene que crear un Canal de texto que contenga la palabra ''
-2. se tiene que crear un canal de voz con la palabra '' para que el comando funcione
-3. Se tiene que conectar al canal de voz
-4. Escribir en el canal el comando  ' % ' 
+1. Para poder ejecutar los comandos grupales se tiene que crear un Canal de texto que contenga la palabra 'grupal'.
+2. se tiene que crear un canal de voz con la palabra 'grupal' para que el comando funcione.
+3. Se tiene que conectar al canal de voz.
+4. Escribir en el canal el comando  ' % '. 
 
 ### Reglas para usar el pomodoro grupal
-1. Se debe tener un canal de texto separado que se llame ''.
-2. Debe de haber un canal de Voz que en el nombre contenga ''.
-3. Tiene que estar conectado al canal de voz que contenga la palabra ''.
+1. Se debe tener un canal de texto separado que se llame 'grupal'.
+2. Debe de haber un canal de Voz que en el nombre contenga 'grupal'.
+3. Tiene que estar conectado al canal de voz que contenga la palabra 'grupal'.
 4. No puede haber un grupo de pomodoro en progreso.
 
 
@@ -63,7 +63,6 @@ Visualiza tus estadísticas, empieza a usar el bot y cada vez que termines un po
 <br />
 
 ### 🥇🥈🥉 Rangos<br/>
-<br/>
 Puedes ver si has trabajado duro puedes consultar tu rango si estas entre los primeros tres mas productivos del servidor, escribiendo
 <br /><br />
 `% rangos` devuelve la lista de los 3 primeros en la tabla de rangos del server.

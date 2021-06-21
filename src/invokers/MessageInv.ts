@@ -131,10 +131,10 @@ let canStartGroup = async (message: Message) => {
     }else if(connected === null) {
         await message.reply('No estas conectado a un canal de voz');
         return false;
-    } else if (!message.member?.voice?.channel?.name.includes('grupo')) {
+    } else if (!message.member?.voice?.channel?.name.includes('grupal')) {
         await message.reply('No estás conectado a un canal de voz de pomodoro grupal');
         return false;
-    } else if(message.channel.type === 'text' && !message.channel.name.includes('grupo')) {
+    } else if(message.channel.type === 'text' && !message.channel.name.includes('grupal')) {
         await message.reply('Solo puedes iniciar un pomodoro grupal en el canal de texto pomodoro grupal');
         return false;
     }

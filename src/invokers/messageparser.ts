@@ -15,7 +15,7 @@ export let parseArguments = (messageContent: string) : Arguments => {
 
     
     //pom 20 break 20
-    if(args.length >= 4 && args[2] === 'descanso') {
+    if(args.length >= 4 && args[2] === 'break') {
         
         let parsedWorkTime = parseInt(args[1]);
         let parsedBreakTime = parseInt(args[3]);

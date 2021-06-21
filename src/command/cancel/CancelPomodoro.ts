@@ -16,7 +16,7 @@ export let CancelPomodoro = async (message: Message) : Promise<void> => {
         return;
     } else if(!currentlyWorking && !currentlyOnBreak) {
         await message.reply(
-            'No estas actualmente trabajando ni en un descanso! empieza una sesion de pomodoro escribiendo <" %pomodoro ">'            
+            'No estas actualmente trabajando ni en un descanso! empieza una sesión de pomodoro escribiendo [%pomodoro], tal vez estas en un pomodoro grupal puedes intentar [%cancelar grupo]'            
         );
         return;
     } else if(currentlyWorking){
