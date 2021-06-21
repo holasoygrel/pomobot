@@ -32,15 +32,15 @@
 
 # Explicación de los comandos
 
-### 🍅 Pomodoro
-<br />
-`% pomodoro` empieza un pomodoro con un tiempo preestablecido de 25 minutos<br/>
-`% pomodoro [tiempo]` establece un pomodoro con duración con el [tiempo] introducido en minutos || el tiempo debe estar entre  10 min - 120 min<br/>
+### 🍅 Pomodoro<br/>
+
+`% pomodoro`empieza un pomodoro con un tiempo preestablecido de 25 minutos<br/>
+`% pomodoro [tiempo]` establece un pomodoro con duración con el tiempo introducido en minutos || el tiempo debe estar entre  10 min - 120 min<br/>
 `% pom` empieza un pomodoro con un tiempo preestablecido de 25 minutos <br/>
 `% pom [tiempo]` empieza un pomodoro en un tiempo ingresado<br />
-`% pom pom`<br /> empieza un pomodoro de 50 minutos<br/>
-`% pom [tiempo] descanso [tiempo]`<br/> establece un pomodoro un pomodoro en x tiempo con un descanso 
-`% grupo [tiempo]`<br/> Empieza un pomodoro grupal <br/>
+`% pom pom` empieza un pomodoro de 50 minutos<br/>
+`% pom [tiempo] descanso [tiempo]` establece un pomodoro un pomodoro en x tiempo con un descanso 
+`% grupo [tiempo]` Empieza un pomodoro grupal <br/>
 `% cancelar` cancela el pomodoro o tu tiempo de descanso <br/>
 
 ### Como configurar los canales para el Pomodoro Grupal:
@@ -62,7 +62,13 @@ Visualiza tus estadísticas, empieza a usar el bot y cada vez que termines un po
 `% productividad` este comando te va a retornar la cantidad total de horas trabajadas
 <br />
 
-### :information_source: Ayuda
+### 🥇🥈🥉 Rangos<br/>
+<br/>
+Puedes ver si has trabajado duro puedes consultar tu rango si estas entre los primeros tres mas productivos del servidor, escribiendo
+<br /><br />
+`% rangos` devuelve la lista de los 3 primeros en la tabla de rangos del server.
+
+### :information_source: Ayuda<br/>
 No sabes cuales son los comandos, puedes conocerlos con el comando de ayuda con el que puedes conocer la lista completa de comandos que puedes usar con el bot.
 <br /><br />
 `% ayuda` responde con la lista total de comandos.
