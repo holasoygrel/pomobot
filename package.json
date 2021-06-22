@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/piedraprog/pomobot.git"
+    "url": "git+https://github.com/holasoygrel/pomobot.git"
   },
   "author": "piedradev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/piedraprog/pomobot/issues"
+    "url": "https://github.com/holasoygrel/pomobot/issues"
   },
-  "homepage": "https://github.com/piedraprog/pomobot#readme",
+  "homepage": "https://github.com/holasoygrel/pomobot#readme",
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.2",
