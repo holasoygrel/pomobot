@@ -9,3 +9,6 @@ dist
 
 #vs code 
 .vscode
+
+#ssh keys
+ssh

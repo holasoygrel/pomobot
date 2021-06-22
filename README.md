@@ -4,15 +4,13 @@
 
 <p align="center">
   Inspirado en el bot de <a href="https://github.com/andreidimaano">Andrei Dimaano</a>
-  Pomobot es un bot de discord basado en el método de estudio Pomodoro, totalmente en español. para añadirlo a tu server click <a href="#">AQUI</a>
+  Pomobot es un bot de discord basado en el método de estudio Pomodoro, totalmente en español. para añadirlo a tu server click <a href="https://discord.com/api/oauth2/authorize?client_id=856953402872692788&permissions=8&scope=bot">AQUI</a>
 </p>
 
 # BUGS
   Aquí iran los bugs que se lleguen a encontrar en las funcionalidades del bot
 
 # Ultimas actualizaciones:<br />
-
-
 
 
 # Todos los comandos:<br />
