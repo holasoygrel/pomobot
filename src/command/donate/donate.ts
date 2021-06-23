@@ -12,5 +12,5 @@ let donateEmbed = new MessageEmbed()
 .setColor('#dc2f02')
 .setTitle(':blush: Donaciones :blush:')
 .addFields(
-    { name: 'Paypal', value: 'https://www.paypal.com'},
+    { name: 'Buy me a coffee', value: 'https://ko-fi.com/pomobot'},
 )
