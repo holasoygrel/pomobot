@@ -11,7 +11,7 @@ export let Help = async (message: Message) : Promise<void> => {
 let helpEmbed = new MessageEmbed()
     .setColor('#dc2f02')
     .setTitle('Comandos')
-    .setFooter('hecho con ♥ por bygrel y Jpdev')
+    .setFooter('hecho con ♥ por bygrel y Jpdev v 1.0.1')
     // .setTimestamp()
     .addFields(
         { name: '% howto', value: 'Explicación de como usar el bot'},
