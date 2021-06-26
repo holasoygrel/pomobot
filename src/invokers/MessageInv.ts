@@ -134,8 +134,8 @@ let canStartGroup = async (message: Message) => {
     } else if (!message.member?.voice?.channel?.name.includes('grupal')) {
         await message.reply('No estás conectado a un canal de voz de pomodoro grupal');
         return false;
-    } else if(message.channel.type === 'text' && !message.channel.name.includes('grupal')) {
-        await message.reply('Solo puedes iniciar un pomodoro grupal en el canal de texto pomodoro grupal');
+    } else if(message.channel.type === 'text' && !message.channel.name.includes('pomobot')) {
+        await message.reply('Solo puedes iniciar un pomodoro grupal en el canal de texto que contenga la palabra [pomobot]');
         return false;
     }
 

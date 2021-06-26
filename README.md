@@ -42,13 +42,13 @@
 `% cancelar` cancela el pomodoro o tu tiempo de descanso <br/>
 
 ### Como configurar los canales para el Pomodoro Grupal:
-1. Para poder ejecutar los comandos grupales se tiene que crear un Canal de texto que contenga la palabra 'grupal'.
+1. Para poder ejecutar los comandos grupales se tiene que crear un Canal de texto que contenga la palabra 'pomobot'.
 2. se tiene que crear un canal de voz con la palabra 'grupal' para que el comando funcione.
 3. Se tiene que conectar al canal de voz.
 4. Escribir en el canal el comando  ' % '. 
 
 ### Reglas para usar el pomodoro grupal
-1. Se debe tener un canal de texto separado que se llame 'grupal'.
+1. Se debe tener un canal de texto separado que se llame 'pomobot'.
 2. Debe de haber un canal de Voz que en el nombre contenga 'grupal'.
 3. Tiene que estar conectado al canal de voz que contenga la palabra 'grupal'.
 4. No puede haber un grupo de pomodoro en progreso.
