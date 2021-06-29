@@ -78,4 +78,7 @@ En el bot esta configurado un comando que lo explica de manera sencilla, desplie
 `% howto` responde con la lista explicando los comandos.
 <br />
 
+### :coffee: Support us on Ko-fi! / Apoyanos en Ko-fi! 
+Todo lo recaudado será utilizado para mantener vivo a este bot y hacer mejoras. ¡Toda ayuda es bienvenida! 
+
  [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y64LY9X)
