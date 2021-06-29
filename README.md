@@ -77,3 +77,5 @@ En el bot esta configurado un comando que lo explica de manera sencilla, desplie
 <br /><br />
 `% howto` responde con la lista explicando los comandos.
 <br />
+
+ [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y64LY9X)
