@@ -24,8 +24,6 @@ export interface Arguments {
     isGroup?: boolean;
 }
 
-
-
 export const onMessage= async (message: Message) : Promise<void> => {
 
     if (!message.guild) return;

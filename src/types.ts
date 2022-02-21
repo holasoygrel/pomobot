@@ -1,4 +1,6 @@
 import { Document } from "mongoose";
+import { SlashCommandBuilder } from "@discordjs/builders";
+
 
 export type DiscordUserData = {
     guildId: string;
@@ -11,3 +13,8 @@ export interface UserDoc extends Document {
     discordTag: string;
     minutesStudied: number;
 }
+
+export type CommandType = {
+    data: SlashCommandBuilder;
+    execute: Function;
+};
