@@ -3,17 +3,16 @@ import { dbUrl } from './config';
 
 
 (async()=>{
-
     try {
         // FUNCION QUE CONECTA A LA DB 
-        const db = await mongoose.connect(dbUrl, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false,
-            useCreateIndex: true
-        });
 
-        console.log('database is connect to:',db.connection.name);
+        const db = mongoose.createConnection(dbUrl);
+
+        db.on('open',()=>{
+            console.log('database is connect to:',db.db.databaseName);
+        })
+
+        
     } catch (error) {
         
         console.log(error);

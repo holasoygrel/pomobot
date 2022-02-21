@@ -11,7 +11,7 @@ export let createGuild = async (guildData: Guild) => {
         let newGuild = new GuildModel({
             guildId: guildData.id,
             guildName: guildData.toString(),
-            guildOwner: guildData.ownerID,
+            guildOwner: guildData.ownerId,
             guildMemberCount: guildData.memberCount
         });
         await newGuild.save();

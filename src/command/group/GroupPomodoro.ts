@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, VoiceChannel } from "discord.js";
 import { createGroupBreak, deleteGroupBreak } from "../../databases/resolvers/GroupBreakResolver";
 import { deleteGroupCanceledBreak, deleteGroupCanceledPomodoro, isCanceledGroup, isCanceledGroupBreak } from "../../databases/resolvers/GroupCanceledResolver";
 import { createGroup, deleteGroup } from "../../databases/resolvers/GroupPomodoroResolver";
@@ -16,7 +16,7 @@ export let GroupPomodoro = async (message: Message, workTime?: number, breakTime
     let errorMessage = groupErrorCheck(workTime);
 
     //get all current members
-    let firstMembers = voiceChannel?.members?.array();
+    let firstMembers = [...voiceChannel?.members!.values()];
     let firstUsersToPing: string = "";
     firstMembers?.forEach(member => {
         if(!member.user.bot) {
@@ -25,14 +25,17 @@ export let GroupPomodoro = async (message: Message, workTime?: number, breakTime
     })
 
     await createGroup(authorId, authorTag, guildId!, channelId, workTimer,);
-    await message.channel.send(`${firstUsersToPing}, ${errorMessage}`, startGroupEmbed(workTimer));
+    await message.channel.send({
+        content:`${firstUsersToPing}, ${errorMessage}`, 
+        embeds:[startGroupEmbed(workTimer )]
+    });
 
     setTimeout(async () => {
         let canceledGroup = await isCanceledGroup(channelId);
         if(!canceledGroup) {
             deleteGroup(channelId);
             
-            let members = voiceChannel?.members?.array();
+            let members = [...voiceChannel?.members!.values()];
             let usersToPing: string = "";
             
             members?.forEach(member => {
@@ -45,15 +48,21 @@ export let GroupPomodoro = async (message: Message, workTime?: number, breakTime
                 )
             })
 
-            await message.channel.send(usersToPing, endGroupEmbed);
+            await message.channel.send({
+                content:usersToPing, 
+                embeds:[endGroupEmbed]
+            });
 
             if(breakTime) {
-                await message.channel.send(usersToPing, startBreakEmbed(breakTime));
+                await message.channel.send({
+                    content: usersToPing,
+                    embeds: [startBreakEmbed(breakTime)],
+                  });
                 await createGroupBreak(channelId, authorId, authorTag)
                 setTimeout(async () => {
                     let breakCanceled = await isCanceledGroupBreak(channelId);
 
-                    let breakMembers = voiceChannel?.members?.array();
+                    let breakMembers = [...voiceChannel?.members!.values()];
                     let usersBreakToPing: string;
 
                     breakMembers?.forEach(member => {
@@ -63,7 +72,10 @@ export let GroupPomodoro = async (message: Message, workTime?: number, breakTime
                     })
 
                     if(!breakCanceled){
-                        await message.channel.send(usersBreakToPing, endBreakEmbed);
+                        await message.channel.send({
+                            content:usersBreakToPing,
+                            embeds:[endBreakEmbed]
+                        });
                         await deleteGroupBreak(channelId);
                     } else {
                         console.log('Descanso terminado');

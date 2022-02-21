@@ -2,10 +2,10 @@ import { Message, MessageEmbed } from "discord.js";
 
 export const donate = async (message: Message) : Promise<void> => {
     await message.react('🙏');
-    await message.channel.send(
-        `${message.author}!`, 
-        donateEmbed
-    );
+    await message.channel.send({
+        content:`${message.author}!`, 
+        embeds: [donateEmbed]
+    });
 }
 
 let donateEmbed = new MessageEmbed()

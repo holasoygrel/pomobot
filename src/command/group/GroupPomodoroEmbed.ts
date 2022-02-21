@@ -14,8 +14,6 @@ export let startGroupEmbed = (time: number) => {
 }
 
 
-
-
 export let endGroupEmbed = new MessageEmbed()
     .setColor('#dc2f02')
     .setTitle('Pomodoro Descanso')

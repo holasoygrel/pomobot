@@ -2,10 +2,10 @@ import { Message, MessageEmbed } from "discord.js";
 
 export let Howto = async (message: Message) : Promise<void> => {
     await message.react('📖');
-    await message.channel.send(
-        `${message.author}  ✌!`, 
-        howEmbed
-    );
+    await message.channel.send({
+        content:`${message.author}  ✌!`, 
+        embeds:[howEmbed]
+    });
 }
 
 let howEmbed = new MessageEmbed()

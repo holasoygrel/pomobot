@@ -5,7 +5,7 @@ import { minutesToHours } from "../productivity/productivity";
 
 export let allTime = async (message: Message) : Promise<void> => {
     let users = await getUserMinutes(message.guild!.id);
-    await message.channel.send(allTimeEmbed(users!));
+    await message.channel.send({embeds:[allTimeEmbed(users!)]});
 }
 
 export let startEmbed = (time: number) => {
@@ -14,7 +14,7 @@ export let startEmbed = (time: number) => {
     .setTitle('Pomodoro')
     .setTimestamp(Date.now())
     .addFields(
-        { name: `:tomato: El tiempo de pomodoro es ${time} minutos :tomato:`, value: ':blush: Exito siendo productivo! :blush:'},
+        { name: `:tomato: El tiempo de Pomodoro es ${time} minutos :tomato:`, value: ':blush: Exito siendo productivo! :blush:'},
     )
 }
 
@@ -36,7 +36,7 @@ let allTimeEmbed = (users: UserDoc[]) => {
         let time = minutesToHours(users[i].minutesStudied);
         minutes += `${time} \n`
     }
-    console.log(rank);
+    // console.log(rank);
     return new MessageEmbed()
     .setColor('#dc2f02')
     .setTitle('Tabla de clasificación')

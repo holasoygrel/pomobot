@@ -18,13 +18,19 @@ export let Pomodoro = async ( message: Message, workTime?: number, breakTime?: n
     let errorMessage = errorCheck(workTime, breakTime);
 
     createUserWorking(guildId, authorId, author, workTimer);
-    await message.reply(errorMessage, startEmbed(workTimer,breakTimer));
+    await message.reply({
+        content:errorMessage, 
+        embeds: [startEmbed(workTimer,breakTimer)]
+    });
     
     
     setTimeout(async () => {
         let canceledPomodoro = await isCanceledPomodoro(authorId);
         if(!canceledPomodoro) {
-            await message.channel.send(message.author, endEmbed);
+            await message.channel.send({ 
+                content: message.author.toString(), 
+                embeds:[endEmbed]
+            });
 
             //remove from study list
             await deleteUserWorking(authorId);
@@ -32,12 +38,18 @@ export let Pomodoro = async ( message: Message, workTime?: number, breakTime?: n
             
             //Empieza un descanso
             if(breakTime) {
-                await message.channel.send(message.author, startBreakEmbed(breakTimer));
+                await message.channel.send({
+                    content:message.author.toString(), 
+                    embeds:[startBreakEmbed(breakTimer)]
+                });
                 await createUserOnBreak(authorId, author);
                 setTimeout(async () => {
                     let breakCanceled = await isCanceledBreak(authorId);
                     if(!breakCanceled){
-                        await message.channel.send(message.author, endBreakEmbed);
+                        await message.channel.send({
+                            content: message.author.toString(), 
+                            embeds:[endBreakEmbed]
+                        });
                         await deleteUserOnBreak(authorId);
                     } else {
                         console.log('Descanso fue cancelado');
