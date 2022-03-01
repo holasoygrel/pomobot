@@ -3,6 +3,17 @@ import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import fs from 'fs';
 
+import  { handleMessage } from "./utils/handleMessage";
+import  { canStartPomodoro, canStartGroup } from "./utils/canStart";
+import  { GuildModel } from "./database/models/Guild";
+import  { UserWorkingModel } from "./database/models/User";
+import  { deleteAllGroups } from "./database/resolvers/GroupPomodoroResolver";
+import  { updateDatabase } from "./utils/updateDatabase";
+import  { createGuild, updateGuild } from "./database/resolvers/GuildResolver";
+import  { deleteAllCanceled } from "./database/resolvers/UserCanceledResolver";
+import  { deleteUsersOnBreak } from "./database/resolvers/UserOnBreakResolver";
+import  { deleteUserWorking } from "./database/resolvers/UserWorking";
+import  { deleteGroupsBreak } from "./database/resolvers/GroupBreakResolver";
 
 
 // Librerias usuario
@@ -41,7 +52,7 @@ const main = async () => {
 		console.log("tamos Ready!");
 		await client.user.setActivity({
 			type: "LISTENING",
-			name: "Ser productivo",
+			name: "Como Ser productivo",
 		});
 		
 		// REGISTRO DE LOS COMANDOS
@@ -69,8 +80,8 @@ const main = async () => {
 			}
 		})();
 
-		// REINICIO DE LOS EVENTOS DEL BOT
-		/* if (!(client.user?.tag === "SpongeBob#9136")) {
+		// REINICIO DE LOS EVENTOS DEL BOT CUANDO SE INSTALA EN UN SERVER
+		 if (!(client.user?.tag === "SpongeBob#9136")) {
 			await deleteAllGroups();
 
 			let membersWorking = await UserWorkingModel.find({});
@@ -91,53 +102,58 @@ const main = async () => {
 			await deleteAllCanceled();
 			await deleteUsersOnBreak();
 			await deleteGroupsBreak();
-		 }*/
+		 }
 	});
 	
 	client.on("interactionCreate", async (interaction) => {
-	 	
-		if(!interaction.isCommand())return;
+		
+		// ????????????????????????????????
+		if(interaction.isCommand()){
+			console.log("patras")
+			return;
+		}
+		
+		// ????????????????????
 		const command = client.commands.get(interaction.commandName)
-		if(!command)return;
+		if(command)return;
+		
 
 		try {
+			
+			if (interaction.isButton()) {
+				const { customId } = interaction;
+				if (customId === "pomodoro") {
+					await client.commands.get(customId).execute(interaction, {
+						work: 25,
+						rest: 0,
+						error: { pom: "", rest: "" },
+					});
+				} else if (customId === "grupo") {
+					await client.commands.get(customId).execute(interaction, {
+						work: 25,
+						rest: 0,
+						error: { pom: "", rest: "" },
+					});
+				} else {
+					
+					await client.commands.get(customId).execute(interaction);
+				}
+			}
 
-			await command.execute(interaction);
+			if (interaction.isCommand()) {
+				const { commandName } = interaction;
+				if (!client.commands.has(commandName)) return;
 
-			// if (interaction.isButton()) {
-			// 	const { customId } = interaction;
-			// 	console.log(customId);
-			// 	if (customId === "pomodoro") {
-			// 		await client.commands.get(customId).execute(interaction, {
-			// 			work: 25,
-			// 			rest: 0,
-			// 			error: { pom: "", rest: "" },
-			// 		});
-			// 	} else if (customId === "group") {
-			// 		await client.commands.get(customId).execute(interaction, {
-			// 			work: 25,
-			// 			rest: 0,
-			// 			error: { pom: "", rest: "" },
-			// 		});
-			// 	} else {
-			// 		await client.commands.get(customId).execute(interaction);
-			// 	}
-			// }
-
-			// if (interaction.isCommand()) {
-			// 	const { commandName } = interaction;
-			// 	if (!client.commands.has(commandName)) return;
-
-			// 	try {
-			// 		await client.commands.get(commandName).execute(interaction);
-			// 	} catch (error) {
-			// 		console.error(error);
-			// 		return interaction.reply({
-			// 		content: "There was an error while executing this command!",
-			// 		ephemeral: true,
-			// 		});
-			// 	}
-			// }
+				try {
+					await client.commands.get(commandName).execute(interaction);
+				} catch (error) {
+					console.error(error);
+					return interaction.reply({
+						content: "ha ocurrido un error mientras de intenta ejecutar el comando",
+						ephemeral: true,
+					});
+				}
+			}
 		} catch(err) {
 			if(err)console.log(err);
 
@@ -148,7 +164,85 @@ const main = async () => {
 		}
     });
 
+	client.on("messageCreate", async (message) => {
+        try {
+            if (message.author.bot) return;
 
+            let options = await handleMessage(message);
+			console.log("opciones bot.js:168",options);
+            if (options === null) {
+            	options = {};
+            }
+            options.message = message;
+            let { command } = options;
+            let interaction = null;
+
+            if (command === "grupo") {
+                let validGroupPomodoro = await canStartGroup(message);
+                if (validGroupPomodoro) {
+                    if (!options.work) {
+                    	options.work = 25;
+                    }
+                    await client.commands.get("grupo").execute(interaction, options);
+                }
+                return;
+            }
+
+            if (command === "pom" || command === "pomodoro") {
+                let validPomodoro = await canStartPomodoro(message);
+                if (validPomodoro) {
+                    if (!options.work) {
+                    options.work = 25;
+                    }
+                    await client.commands.get("pomodoro").execute(interaction, options);
+                }
+                return;
+            }
+
+            if (!client.commands.has(command)) {
+                if (command === "alltime" || command === "leaderboards") {
+                    await client.commands
+						.get("leaderboard")
+						.execute(interaction, options);
+                    return;
+                } else if (command === "cancelar") {
+                    options.isGroup
+                    ? await client.commands
+                        .get("cancelargrupo")
+                        .execute(interaction, options)
+                    : await client.commands
+                        .get("cancelarpom")
+                        .execute(interaction, options);
+                    return;
+                }
+            }
+
+            if (client.commands.get(command) === undefined) return;
+
+            await client.commands.get(command).execute(interaction, options);
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+    client.on("guildCreate", async (guildData) => {
+        try {
+            let guildExists = await GuildModel.exists({ guildId: guildData.id });
+            if (!guildExists) {
+            await createGuild(guildData);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+	client.on("guildMemberRemove", async (guildMember) => {
+        await updateGuild(guildMember.guild);
+    });
+
+    client.on("guildMemberAdd", async (guildMember) => {
+        await updateGuild(guildMember.guild);
+    });
 
 	// LOGIN DEL BOT
 	client.login(config.BOTOKEN);

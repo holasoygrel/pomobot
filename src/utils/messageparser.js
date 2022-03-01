@@ -1,9 +1,9 @@
-import { prefix } from "../config";
+import config  from "../config";
 import { Arguments } from "../invokers/MessageInv";
 
 export let parseArguments = (messageContent) => {
     //remove command prefix
-    let content = messageContent.slice(prefix.length);
+    let content = messageContent.slice(config.PREFIX.length);
     let args = content.split(' ').filter((argument) => argument.length > 0 ); 
 
     console.log("argumentos", args)

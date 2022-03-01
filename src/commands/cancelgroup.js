@@ -7,15 +7,14 @@ import { createGroupCanceled } from "../database/resolvers/GroupCanceledResolver
 import { deleteGroup, groupExists, isAuthor} from "../database/resolvers/GroupPomodoroResolver";
 
 
-
 export const data = new SlashCommandBuilder()
-    .setName("cancelgroup")
-    .setDescription("Cancel Group Pomodoro");
+    .setName("cancelargrupo")
+    .setDescription("Termina el Pomodoro Grupal");
 
 const group = new MessageActionRow().addComponents(
     new MessageButton()
-        .setCustomId("group")
-        .setLabel("Start 25 min Group Pomodoro")
+        .setCustomId("grupo")
+        .setLabel("Da inicio a un Pomodoro Grupal de 25 min")
         .setStyle("SECONDARY")
         .setEmoji("🧑‍🤝‍🧑")
 );
@@ -34,19 +33,19 @@ let intExe = async (interaction) => {
         if (isAuthorOfGroup) {
             await deleteGroup(channelId);
             await createGroupCanceled(guildId, channelId, true);
-            await interaction.editReply("Group canceled");
+            await interaction.editReply("Grupo Cancelado");
         } else {
             await interaction.editReply(
-                "Only the author can cancel a group pomodoro"
+                "Solo el autor puede cancelar el pomodoro grupal"
             );
         }
     } else if (currentlyOnBreak) {
         await deleteGroupBreak(channel.Id);
         await createGroupCanceled(guildId, channelId, true);
-        await interaction.editReply("Break Canceled");
+        await interaction.editReply("Descando Terminado");
     } else if (!currentlyOnBreak && !currentlyWorking) {
         await interaction.editReply({
-            content: "Group Pomodoro does not exist in this channel",
+            content: "Pomodoro grupal no existe en este canal",
             components: [group],
         });
     }
@@ -65,17 +64,17 @@ let messExe = async (message) => {
                 message.channel.id,
                 true
             );
-            await message.reply("Group canceled");
+            await message.reply("Grupo Cancelado");
         } else {
-            await message.reply("Only the author can cancel a group pomodoro");
+            await message.reply("Solo el autor puede cancelar el Pomodoro Grupal");
         }
     } else if (currentlyOnBreak) {
         await deleteGroupBreak(message.channel.id);
         await createGroupCanceled(message.guild.id, message.channel.id, false);
-        await message.reply("Break Canceled");
+        await message.reply("Descanso Cancelado");
     } else if (!currentlyOnBreak && !currentlyWorking) {
         await message.reply({
-            content: "Group Pomodoro does not exist in this channel",
+            content: "Pomodoro grupal no existe en este Canal",
             components: [group],
         });
     }

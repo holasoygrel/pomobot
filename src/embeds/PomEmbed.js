@@ -3,11 +3,11 @@ const { MessageEmbed } = require("discord.js");
 
 const pomStartEmbed = (duration) => {
   return new MessageEmbed()
-    .setTitle("Pomodoro Started")
+    .setTitle("Pomodoro inciado")
     .addFields([
       {
-        name: `🍅  \`${duration} minutes\``,
-        value: "\n:blush: Happy Working!\n",
+        name: `🍅  \`${duration} minutos\``,
+        value: "\n:blush: Feliz trabajo!\n",
       },
     ])
     .setColor("GREEN")
@@ -17,21 +17,21 @@ const pomStartEmbed = (duration) => {
 const pomStartRow = new MessageActionRow().addComponents(
   new MessageButton()
     .setCustomId("cancelpom")
-    .setLabel("Cancel Pomodoro")
+    .setLabel("Terminar el pomodoro")
     .setStyle("SECONDARY")
     .setEmoji("🚫")
 );
 
 const pomEndEmbed = (duration, breakTimeStamp, user) => {
   return new MessageEmbed()
-    .setTitle("Finished Pomodoro")
+    .setTitle("Pomodoro Finalizado")
     .setImage(
       "https://media.giphy.com/media/62HBhssMOgdJUZQp1X/giphy.gif?cid=ecf05e476qfh1l789h091lks39a8lbyn4mj6u2bc7sc3u6s9&rid=giphy.gif&ct=g"
     )
     .addFields([
       {
         name: `✅  \`${duration} minutes\``,
-        value: `😌 enjoy your *well-deserved* break! ${user.toString()} `,
+        value: `😌 disfruta tu *bien merecido* descanso! ${user.toString()} `,
       },
     ])
     .setColor("GREEN")

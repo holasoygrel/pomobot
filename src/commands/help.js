@@ -6,13 +6,6 @@ let data = new SlashCommandBuilder()
     .setName('ayuda')
     .setDescription('Lista de comandos que tiene el bot')
 
-// export let Help = async (message) => {
-//     await message.react('👀');
-//     await message.channel.send({
-//         content:`${message.author} aqui tienes lo comandos ✌!`, 
-//         embeds:[helpEmbed]
-//     });
-// }
 
 let helpEmbed = new MessageEmbed()
     .setColor('#dc2f02')
@@ -81,7 +74,7 @@ let mesExe = async (message) => {
   
 let execute = async (interaction, options) => {
     if (interaction !== null) {
-        // console.log(interaction);
+        
         intExe(interaction, options);
     } else {
         mesExe(options.message);

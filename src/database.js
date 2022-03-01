@@ -4,12 +4,10 @@ import config from './config';
 (async()=>{
     try {
         // FUNCION QUE CONECTA A LA DB 
-        const db = mongoose.createConnection(config.DB_URL);
+       const db = await mongoose.connect(config.DB_URL);
 
-       
-        db.on('open',()=>{
-            console.log('database is connect to:',db.db.databaseName);
-        })  
+       console.log('database is connect to:',db.connection.name);
+        
     } catch (error) {
         console.log(error);
     }

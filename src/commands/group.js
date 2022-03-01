@@ -47,7 +47,7 @@ import { updateDatabase } from "../utils/updateDatabase";
 const player = createAudioPlayer();
 
 function playSong() {
-    const resource = createAudioResource("./src/util/YoScott.m4a", {
+    const resource = createAudioResource("https://www.youtube.com/watch?v=2zgV7f4s03U", {
         inputType: StreamType.Arbitrary,
     });
 
@@ -73,18 +73,18 @@ async function connectToChannel(channel) {
 }
 
 let data = new SlashCommandBuilder()
-    .setName("group")
-    .setDescription("Work with your friends :D")
+    .setName("grupo")
+    .setDescription("Trabaja con amigos :D")
     .addIntegerOption((option) =>
         option
             .setName("work")
-            .setDescription("the time in minutes you want to work")
+            .setDescription("el tiempo en minutos que vas a trabajar")
             .setRequired(false)
     )
     .addIntegerOption((option) =>
         option
             .setName("break")
-            .setDescription("the time in minutes you want to rest")
+            .setDescription("el tiempo en minutos que vas a descansar")
             .setRequired(false)
     );
 
@@ -103,10 +103,10 @@ let intExe = async (interaction, options) => {
         interaction.channelId
     );
 
-    console.log("voice: ");
-    console.log(voice);
-    console.log("voice channel: ");
-    console.log(voice.channel);
+    // console.log("voice: ");
+    // console.log(voice);
+    // console.log("voice channel: ");
+    // console.log(voice.channel);
 
     await interaction.deferReply();
 
@@ -115,29 +115,27 @@ let intExe = async (interaction, options) => {
     let groupBreakInProgress = await isGroupBreak(channelId);
 
     if (groupPomInProgress) {
-        await interaction.editReply("```Error: Group Pomdoro in Progress```");
+        await interaction.editReply("```Error: Pomodoro grupal en progreso```");
         return;
     } else if (groupBreakInProgress) {
-        await interaction.editReply("```Error: Group Break in Progress```");
+        await interaction.editReply("```Error: Descanso grupal en progreso```");
         return;
     }
 
     if (channel === undefined || channel === null) {
         await interaction.editReply(
-            "```Error: You are not connected to a voice channel```"
+            "```Error: no estas conectado a un canal de voz```"
         );
         return;
-    } else if (!channel.name.includes("group")) {
+    } else if (!channel.name.includes("grupo")) {
         await interaction.editReply(
-            "```Error: You are not connected to a group pomodoro voice channel```"
+            "```Error: No estas conectado a un canal de voz grupal```"
         );
         return;
-    } else if (
-        interaction.channel.type === "GUILD_TEXT" &&
-        !interaction.channel.name.includes("group")
+    } else if (interaction.channel.type === "GUILD_TEXT" && !interaction.channel.name.includes("grupo")
     ) {
         await interaction.editReply(
-            "```Error: You can only start a group pomodoro in the group text channel```"
+            "```Error: solo puedes iniciar un pomodoro grupal en el canal de texto pomodoro grupal```"
         );
         return;
     }
@@ -291,7 +289,7 @@ let mesExe = async (options) => {
     setTimeout(async () => {
         let canceledGroup = await isCanceledGroup(channelId);
         if (canceledGroup) {
-            console.log("Group was canceled");
+            console.log("Grupo cancelado");
             await deleteGroupCanceledPomodoro(channelId);
         } else {
             await deleteGroup(channelId);
@@ -366,7 +364,7 @@ let mesExe = async (options) => {
                         });
                         await deleteGroupBreak(channelId);
                     } else {
-                        console.log("Break was canceled");
+                        console.log("descanso terminado");
                         await deleteGroupCanceledBreak(channelId);
                     }
                 }, rest * 60000);

@@ -3,11 +3,11 @@ const { MessageEmbed } = require("discord.js");
 
 const groupStartEmbed = (duration) => {
   return new MessageEmbed()
-    .setTitle("Group Pomodoro Started")
+    .setTitle("Pomodoro Grupal inciado")
     .addFields([
       {
-        name: `🧑‍🤝‍🧑 \`${duration} minutes\``,
-        value: ":blush: Happy Working!",
+        name: `🧑‍🤝‍🧑 \`${duration} minutos\``,
+        value: ":blush: Feliz trabajo!",
       },
     ])
     .setColor("#570000")
@@ -16,22 +16,22 @@ const groupStartEmbed = (duration) => {
 
 const groupStartRow = new MessageActionRow().addComponents(
   new MessageButton()
-    .setCustomId("cancelgroup")
-    .setLabel("Cancel Group Pomodoro")
+    .setCustomId("cancelargrupo")
+    .setLabel("Terminar Pomodoro Grupal")
     .setStyle("SECONDARY")
     .setEmoji("🚫")
 );
 
 const groupEndEmbed = (duration, breakTimeStamp) => {
   return new MessageEmbed()
-    .setTitle("Finished Pomodoro")
+    .setTitle("Pomodoro Terminado")
     .setImage(
       "https://media.giphy.com/media/IzU4wcD554uGc/giphy.gif?cid=ecf05e474j8l5fkzkq7pyzb6d6tz02mk7shoihs8oae24j05&rid=giphy.gif&ct=g"
     )
     .addFields([
       {
-        name: `✅  \`${duration} minutes\``,
-        value: `😌 amazing job titans! enjoy your *well-deserved* breaks.`,
+        name: `✅  \`${duration} minutos\``,
+        value: `😌 Eso fue un trabajo increíble! Disfruta de tu bien merecido Descanso.`,
       },
     ])
     .setColor("#570000")
@@ -40,8 +40,8 @@ const groupEndEmbed = (duration, breakTimeStamp) => {
 
 const groupEndRow = new MessageActionRow().addComponents(
   new MessageButton()
-    .setCustomId("group")
-    .setLabel("Start 25 min Group Pomodoro")
+    .setCustomId("grupo")
+    .setLabel("Incio un pomodoro de 25 minutos")
     .setStyle("SECONDARY")
     .setEmoji("🧑‍🤝‍🧑"),
   new MessageButton()
@@ -59,22 +59,22 @@ const groupEndRow = new MessageActionRow().addComponents(
 let startGroupBreakEmbed = (duration, timestamp) => {
   return new MessageEmbed()
     .setColor("#cddafd")
-    .setTitle("Break Started")
+    .setTitle("Descanso iniciado")
     .addFields({
-      name: `:timer: \`${duration} minutes\``,
-      value: "Breaks are just as important as working, Rest well!",
+      name: `:timer: \`${duration} minutos\``,
+      value: "Descansar es igual de importante que trabajar, Descansa bien!",
     })
     .setTimestamp(timestamp);
 };
 
 let startGroupBreakRow = new MessageActionRow().addComponents(
   new MessageButton()
-    .setCustomId("cancelgroup")
-    .setLabel("Cancel Group Break")
+    .setCustomId("cancelargrupo")
+    .setLabel("Termina el descanso grupal")
     .setStyle("SECONDARY")
     .setEmoji("🚫"),
   new MessageButton()
-    .setLabel("Importance of Breaks")
+    .setLabel("Importancia de los descansos")
     .setStyle("LINK")
     .setURL("https://youtu.be/dzjsk5e7srI")
 );
@@ -82,10 +82,10 @@ let startGroupBreakRow = new MessageActionRow().addComponents(
 let endGroupBreakEmbed = (duration, timestamp) => {
   return new MessageEmbed()
     .setColor("#cddafd")
-    .setTitle("Break Finished")
+    .setTitle("Descanso terminado")
     .addFields({
-      name: `✅  \`${duration} minutes\``,
-      value: `😌 Hope you enjoyed your breaks!`,
+      name: `✅  \`${duration} minutos\``,
+      value: `😌 Espero hayas disfrutado tu descanso!`,
     })
     .setTimestamp(timestamp);
 };

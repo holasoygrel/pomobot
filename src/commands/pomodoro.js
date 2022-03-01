@@ -35,7 +35,7 @@ let intExe = async (interaction, options) => {
         return;
     }
 
-    let breakTimeStamp = moment().add(work, "m").toDate();
+    let breakTimeStamp = moment.add(work, "m").toDate();
     let endbreakTimeStamp = moment(breakTimeStamp).add(rest, "m").toDate();
 
     // start pomodoro
