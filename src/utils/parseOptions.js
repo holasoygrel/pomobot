@@ -12,7 +12,7 @@ let parseInteractionOptions = (options) => {
   if (parsed.work !== null && (parsed.work < 10 || parsed.work > 120)) {
     parsed.work = 25;
     parsed.error.pom =
-      "\n```Error: work time specified is not within work time limits\nFix: work time set to 25```";
+      "\n```Error: Tiempo de trabajo introducido no esta dentro de los limites, se ha establecido por defecto a 25 minutos```";
   }
 
   if (
@@ -22,7 +22,7 @@ let parseInteractionOptions = (options) => {
   ) {
     parsed.rest = 5;
     parsed.error.rest =
-      "\n```Error: break time is not within break time limits\nFix: break time set to 5```";
+      "\n```Error: Tiempo de descanso no esta dentro de los limites, el limite por defecto del tiempo de descanso se ha establecido en 5 minutos```";
   }
 
   if (parsed.work === null) {
@@ -38,7 +38,7 @@ let parseMessageOptions = (work, rest) => {
   if (parsed.work !== null && (parsed.work < 10 || parsed.work > 120)) {
     parsed.work = 25;
     parsed.error.pom =
-      "\n```Error: work time specified is not within work time limits\nFix: work time set to 25```";
+      "\n```Error: Tiempo de trabajo introducido no esta dentro de los limites, se ha establecido por defecto a 25 minutos```";
   }
 
   if (
@@ -48,7 +48,7 @@ let parseMessageOptions = (work, rest) => {
   ) {
     parsed.rest = 5;
     parsed.error.rest =
-      "\n```Error: break time is not within break time limits\nFix: break time set to 5```";
+      "\n```Error: Tiempo de descanso no esta dentro de los limites, el limite por defecto del tiempo de descanso se ha establecido en 5 minutos```";
   }
 
   if (parsed.work === null) {

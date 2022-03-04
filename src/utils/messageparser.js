@@ -6,12 +6,12 @@ export let parseArguments = (messageContent) => {
     let content = messageContent.slice(config.PREFIX.length);
     let args = content.split(' ').filter((argument) => argument.length > 0 ); 
 
-    console.log("argumentos", args)
+    
     let workTime = 0, breakTime = 0;
     let command = args[0].toLowerCase();
     let isGroup = false;
     
-    // console.log("COMANDO:", command);
+    
 
     
     //pom 20 break 20

@@ -25,13 +25,10 @@ const groupStartRow = new MessageActionRow().addComponents(
 const groupEndEmbed = (duration, breakTimeStamp) => {
   return new MessageEmbed()
     .setTitle("Pomodoro Terminado")
-    .setImage(
-      "https://media.giphy.com/media/IzU4wcD554uGc/giphy.gif?cid=ecf05e474j8l5fkzkq7pyzb6d6tz02mk7shoihs8oae24j05&rid=giphy.gif&ct=g"
-    )
     .addFields([
       {
         name: `✅  \`${duration} minutos\``,
-        value: `😌 Eso fue un trabajo increíble! Disfruta de tu bien merecido Descanso.`,
+        value: `😌 Eso fue un trabajo increíble! Disfruta de tu Descanso.`,
       },
     ])
     .setColor("#570000")
@@ -41,17 +38,17 @@ const groupEndEmbed = (duration, breakTimeStamp) => {
 const groupEndRow = new MessageActionRow().addComponents(
   new MessageButton()
     .setCustomId("grupo")
-    .setLabel("Incio un pomodoro de 25 minutos")
+    .setLabel("Inicia un pomodoro de 25 minutos")
     .setStyle("SECONDARY")
     .setEmoji("🧑‍🤝‍🧑"),
   new MessageButton()
-    .setCustomId("productivity")
-    .setLabel("Productivity")
+    .setCustomId("productividad")
+    .setLabel("Productividad")
     .setStyle("SECONDARY")
     .setEmoji("📈"),
   new MessageButton()
-    .setCustomId("leaderboard")
-    .setLabel("Leaderboards")
+    .setCustomId("rangos")
+    .setLabel("Tabla de clasificación")
     .setStyle("SECONDARY")
     .setEmoji("🏆")
 );
@@ -73,10 +70,6 @@ let startGroupBreakRow = new MessageActionRow().addComponents(
     .setLabel("Termina el descanso grupal")
     .setStyle("SECONDARY")
     .setEmoji("🚫"),
-  new MessageButton()
-    .setLabel("Importancia de los descansos")
-    .setStyle("LINK")
-    .setURL("https://youtu.be/dzjsk5e7srI")
 );
 
 let endGroupBreakEmbed = (duration, timestamp) => {

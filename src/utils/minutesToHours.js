@@ -4,10 +4,10 @@ module.exports = {
   formatDuration: (totalMinutes) => {
     let hours = Math.floor(totalMinutes / 60);
     let minutes = totalMinutes % 60;
-    let hourSingularOrPlural = hours === 1 ? "hour" : "hours";
+    let hourSingularOrPlural = hours === 1 ? "hora" : "horas";
 
     return hours === 0
-      ? `${minutes} minutes`
-      : `${hours} ${hourSingularOrPlural} ${minutes} minutes`;
+      ? `${minutes} minutos`
+      : `${hours} ${hourSingularOrPlural} ${minutes} minutos`;
   },
 };

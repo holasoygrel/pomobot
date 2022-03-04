@@ -10,7 +10,7 @@ let data = new SlashCommandBuilder()
 let helpEmbed = new MessageEmbed()
     .setColor('#dc2f02')
     .setTitle('Comandos')
-    .setFooter({text:'hecho con ♥ por bygrel y Jpdev v 1.0.2'})
+    .setFooter({text:'hecho con ♥ por bygrel y piedraprog v 1.0.2'})
     // .setTimestamp()
     .addFields(
         { name: '% howto', value: 'Explicación de como usar el bot'},
@@ -30,33 +30,33 @@ let helpEmbed = new MessageEmbed()
 const helpRow = new MessageActionRow().addComponents(
     new MessageButton()
         .setCustomId("pomodoro")
-        .setLabel("Start 25 min Pomodoro")
+        .setLabel("Da incio a un pomodoro de 25 min")
         .setStyle("SECONDARY")
         .setEmoji("🍅"),
     new MessageButton()
-        .setCustomId("productivity")
+        .setCustomId("Productividad")
         .setLabel("Productivity")
         .setStyle("SECONDARY")
         .setEmoji("📈"),
     new MessageButton()
-        .setCustomId("leaderboard")
-        .setLabel("Leaderboards")
+        .setCustomId("rangos")
+        .setLabel("Tabla de clasificación")
         .setStyle("SECONDARY")
         .setEmoji("🏆"),
     new MessageButton()
         .setLabel("Github")
         .setStyle("LINK")
-        .setURL("https://github.com/andreidimaano/Calcifer"),
+        .setURL("https://github.com/holasoygrel/pomobot"),
     new MessageButton()
-        .setCustomId("cook")
-        .setLabel("Click me if you dare")
-        .setStyle("DANGER")
-        .setEmoji("⚠️")
+        .setCustomId("Apoyar")
+        .setLabel("Apoya el mantenimiento del bot ♥")
+        .setStyle("PRIMARY")
+        .setEmoji("🙏")
 );
 
 let intExe = async (interaction, options) => {
     await interaction.reply({
-        content: `${interaction.user.toString()} Fine, like moving the castle isn\'t hard enough!`,
+        content: `${interaction.user.toString()} Bien, Como si mover elefantes con las manos no fuese \'suficiente !`,
         embeds: [helpEmbed],
         components: [helpRow],
         ephemeral: false,
@@ -64,9 +64,9 @@ let intExe = async (interaction, options) => {
 };
   
 let mesExe = async (message) => {
-    await message.react("😡");
+    await message.react("🙄");
     await message.channel.send({
-        content: `${message.author.toString()} Fine, like moving the castle isn\'t hard enough!`,
+        content: `${message.author.toString()} Bien, Como si mover elefantes con las manos no fuese suficiente !`,
         embeds: [helpEmbed],
         components: [helpRow],
     });

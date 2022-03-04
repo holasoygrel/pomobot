@@ -177,8 +177,8 @@ let mesExe = async (options) => {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("pomodoro")
-        .setDescription("Empieza un pomodoro")
+        .setName("ciclopomodoro")
+        .setDescription("Empieza un ciclo de pomodoro")
         .addIntegerOption((option) =>
         option
             .setName("work")

@@ -19,6 +19,7 @@ import  { deleteGroupsBreak } from "./database/resolvers/GroupBreakResolver";
 // Librerias usuario
 import config from './config';
 import './database'
+import { channel } from 'diagnostics_channel';
 
 
 const main = async () => {
@@ -51,7 +52,7 @@ const main = async () => {
 		// SETEA EL ESTADO DEL BOT 
 		console.log("tamos Ready!");
 		await client.user.setActivity({
-			type: "LISTENING",
+			type: "PLAYING",
 			name: "Como Ser productivo",
 		});
 		
@@ -67,13 +68,13 @@ const main = async () => {
 					await rest.put(Routes.applicationCommand(CLIENT_ID), {
 						body: commands
 					});
-					console.log("comandos registrados exitosamente de manera global")
+					console.log("comandos registrados exitosamente de manera global");
 					
 				}else{
 					await rest.put(Routes.applicationGuildCommands(CLIENT_ID,config.GUILD_ID), {
 						body: commands
 					});
-					console.log("comandos registrados exitosamente de manera local")
+					console.log("comandos registrados exitosamente de manera local");
 				}
 			} catch (error) {
 				if(error)console.error(error);
@@ -107,19 +108,7 @@ const main = async () => {
 	
 	client.on("interactionCreate", async (interaction) => {
 		
-		// ????????????????????????????????
-		if(interaction.isCommand()){
-			console.log("patras")
-			return;
-		}
-		
-		// ????????????????????
-		const command = client.commands.get(interaction.commandName)
-		if(command)return;
-		
-
-		try {
-			
+		try {	
 			if (interaction.isButton()) {
 				const { customId } = interaction;
 				if (customId === "pomodoro") {
@@ -167,9 +156,7 @@ const main = async () => {
 	client.on("messageCreate", async (message) => {
         try {
             if (message.author.bot) return;
-
             let options = await handleMessage(message);
-			console.log("opciones bot.js:168",options);
             if (options === null) {
             	options = {};
             }
