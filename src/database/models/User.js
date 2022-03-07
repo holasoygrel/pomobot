@@ -3,26 +3,26 @@ const Schema = mongoose.Schema;
 
 // Status
 const UserWorkingSchema = new Schema({
-  discordId: String,
-  discordTag: String,
-  minutes: Number,
-  guildId: String,
+    discordId: String,
+    discordTag: String,
+    minutes: Number,
+    guildId: String,
 });
 
 const UserBreakSchema = new Schema({
-  discordId: String,
-  discordTag: String,
+    discordId: String,
+    discordTag: String,
 });
 
 //Cancel
 const UserCanceledBreakSchema = new Schema({
-  discordId: String,
-  discordTag: String,
+    discordId: String,
+    discordTag: String,
 });
 
 const UserCanceledWorkingSchema = new Schema({
-  discordId: String,
-  discordTag: String,
+    discordId: String,
+    discordTag: String,
 });
 
 module.exports = {

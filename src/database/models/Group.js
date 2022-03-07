@@ -28,14 +28,14 @@ const GroupCancelWorkingSchema = new Schema({
 });
 
 module.exports = {
-  GroupPomodoroModel: mongoose.model("GroupPomodoros", GroupPomodoroSchema),
-  GroupBreakModel: mongoose.model("GroupBreakChannels", GroupBreakSchema),
-  GroupCancelWorkingModel: mongoose.model(
-    "CanceledGroupWorkingChannels",
-    GroupCancelWorkingSchema
-  ),
-  GroupCancelBreakModel: mongoose.model(
-    "CanceledGroupBreakChannels",
-    GroupCancelBreakSchema
-  ),
+    GroupPomodoroModel: mongoose.model("GroupPomodoros", GroupPomodoroSchema),
+    GroupBreakModel: mongoose.model("GroupBreakChannels", GroupBreakSchema),
+    GroupCancelWorkingModel: mongoose.model(
+      "CanceledGroupWorkingChannels",
+      GroupCancelWorkingSchema
+    ),
+    GroupCancelBreakModel: mongoose.model(
+      "CanceledGroupBreakChannels",
+      GroupCancelBreakSchema
+    ),
 };

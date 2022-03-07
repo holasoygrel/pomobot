@@ -1,12 +1,14 @@
 const { MessageActionRow, MessageButton } = require("discord.js");
 const { MessageEmbed } = require("discord.js");
 
-const pomStartEmbed = (duration) => {
+
+// MENSAJE DE INCIO DE LA SESION DEL POMODORO
+const pomCicleStartEmbed = (duration) => {
   return new MessageEmbed()
-    .setTitle("Pomodoro inciado")
+    .setTitle("Sesión Pomodoro iniciado")
     .addFields([
       {
-        name: `🍅  \`${duration} minutos\``,
+        name: `🍅Sesión de 4 Pomodoros de \`${duration} minutos\``,
         value: "\n:blush: Feliz trabajo!\n",
       },
     ])
@@ -14,17 +16,19 @@ const pomStartEmbed = (duration) => {
     .setTimestamp();
 };
 
-const pomStartRow = new MessageActionRow().addComponents(
+// BOTONES DEL MENSAJE POMODORO
+const pomCicleStartRow = new MessageActionRow().addComponents(
   new MessageButton()
-    .setCustomId("cancelpom")
-    .setLabel("Terminar el pomodoro")
+    .setCustomId("cancelsesion")
+    .setLabel("Terminar la sesión pomodoro")
     .setStyle("SECONDARY")
     .setEmoji("🚫")
 );
 
-const pomEndEmbed = (duration, breakTimeStamp, user) => {
+// MENSAJE DE TERMINACIÓN DE LA SESIÓN DEL POMODORO
+const pomCicleEndEmbed = (duration, breakTimeStamp, user, cicle) => {
   return new MessageEmbed()
-    .setTitle("Pomodoro Finalizado")
+    .setTitle(`Pomodoro nro: ${cicle} Finalizado`)
     .addFields([
       {
         name: `✅  \`${duration} minutes\``,
@@ -35,12 +39,7 @@ const pomEndEmbed = (duration, breakTimeStamp, user) => {
     .setTimestamp(breakTimeStamp);
 };
 
-const pomEndRow = new MessageActionRow().addComponents(
-  new MessageButton()
-    .setCustomId("pomodoro")
-    .setLabel("Pomodoro de 25 minutos")
-    .setStyle("SECONDARY")
-    .setEmoji("🍅"),
+const pomCicleEndRow = new MessageActionRow().addComponents(
   new MessageButton()
     .setCustomId("productividad")
     .setLabel("Productividad")
@@ -53,45 +52,94 @@ const pomEndRow = new MessageActionRow().addComponents(
     .setEmoji("🏆")
 );
 
-let startBreakEmbed = (duration, timestamp) => {
-  return new MessageEmbed()
-    .setColor("#cddafd")
-      .setTitle("Descanso iniciado")
-    .addFields({
-      name: `:timer: \`${duration} minutos\``,
-      value: "Los descansos son tan importantes como lo es el trabajar, Descansa bien!",
-    })
-    .setTimestamp(timestamp);
+let startCicleBreakEmbed = (duration, timestamp, cicle) => {
+	return new MessageEmbed()
+		.setColor("#cddafd")
+		.setTitle(`Descanso corto número: \`${cicle+1}\` iniciado`)
+		.addFields({
+		name: `:timer: \`${duration} minutos\``,
+		value: "Los descansos son tan importantes como lo es el trabajar, Descansa bien!",
+		})
+		.setTimestamp(timestamp);
 };
 
-const startBreakRow = new MessageActionRow().addComponents(
+const startCicleBreakRow = new MessageActionRow().addComponents(
   new MessageButton()
-    .setCustomId("cancelpom")
-    .setLabel("Terminar el descanso")
+    .setCustomId("cancelsesion")
+    .setLabel("Terminar el descanso corto")
     .setStyle("SECONDARY")
     .setEmoji("🚫"),
 );
 
-let endBreakEmbed = (duration, timestamp, user) => {
+let endCicleBreakEmbed = (duration, timestamp, user, cicle) => {
   return new MessageEmbed()
     .setColor("#cddafd")
-    .setTitle("Denscanso termiando")
+    .setTitle(`Descanso corto terminado, Empieza el pomodoro nro: \`${cicle+1}\``)
     .addFields({
       name: `✅  \`${duration} minutos\``,
-      value: `😌 Espero hayas disfrutado tu descanso! ${user.toString()} `,
+      value: `😌 Espero hayas disfrutado tu descanso! ${user.toString()} \n `,
     })
     .setTimestamp(timestamp);
 };
 
-const endBreakRow = pomEndRow;
+const endCicleBreakRow = pomCicleEndRow;
+
+
+// DESCANSO LARGO 
+let startCicleLongBreakEmbed = (duration, timestamp) => {
+  return new MessageEmbed()
+    .setColor("#cddafd")
+      .setTitle("Descanso Largo iniciado")
+    .addFields({
+      name: `:timer: \`${duration} minutos\``,
+      value: "Los descansos largos después de una sesión son tan importantes como lo es el trabajar, Descansa bien!",
+    })
+    .setTimestamp(timestamp);
+};
+
+const startCicleLongBreakRow = new MessageActionRow().addComponents(
+  new MessageButton()
+    .setCustomId("cancelsesion")
+    .setLabel("Terminar el descanso largo")
+    .setStyle("SECONDARY")
+    .setEmoji("🚫"),
+);
+
+let endCicleLongBreakEmbed = (duration, timestamp, user) => {
+  return new MessageEmbed()
+    .setColor("#cddafd")
+    .setTitle("Sesión de pomodoro ha terminado")
+    .addFields({
+      name: `✅  \`${duration} minutos\``,
+      value: `😌 Espero hayas disfrutado tu sesión! ${user.toString()} `,
+    })
+    .setTimestamp(timestamp);
+};
+
+
+const endCicleLongBreakRow = new MessageActionRow().addComponents(
+	new MessageButton()
+		.setCustomId("sesionpomodoro")
+		.setLabel("Empezar una nueva sesión de pomodoro")
+		.setStyle("SECONDARY")
+		.setEmoji("🚫"),
+);
+
 
 module.exports = {
-  pomStartEmbed,
-  pomStartRow,
-  pomEndEmbed,
-  pomEndRow,
-  startBreakEmbed,
-  startBreakRow,
-  endBreakEmbed,
-  endBreakRow,
+  // POMODORO
+  pomCicleStartEmbed,
+  pomCicleStartRow,
+  pomCicleEndEmbed,
+  pomCicleEndRow,
+  // DESCANSO CORTO
+  startCicleBreakEmbed,
+  startCicleBreakRow,
+  endCicleBreakEmbed,
+  endCicleBreakRow,
+  // DESCANSO LARGO 
+  startCicleLongBreakEmbed,
+  startCicleLongBreakRow,
+  endCicleLongBreakEmbed,
+  endCicleLongBreakRow
 };

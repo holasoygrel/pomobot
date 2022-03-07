@@ -134,43 +134,43 @@ let mesExe = async (options) => {
         // end pom
         let canceledPomodoro = await isCanceledPomodoro(authorId);
         if (canceledPomodoro) {
-        console.log("Pomodoro terminado");
-        await deleteUserCanceledPomodoro(authorId);
+            console.log("Pomodoro terminado");
+            await deleteUserCanceledPomodoro(authorId);
         } else {
-        await channel.send({
-            target: user,
-            content: `${user.toString()}`,
-            embeds: [pomEndEmbed(work, breakTimeStamp, user)],
-            components: [pomEndRow],
-        });
-        await deleteUserWorking(authorId);
-        updateDatabase(guildId, authorId, author, work);
-
-        if (rest) {
             await channel.send({
                 target: user,
                 content: `${user.toString()}`,
-                embeds: [startBreakEmbed(rest, breakTimeStamp)],
-                components: [startBreakRow],
+                embeds: [pomEndEmbed(work, breakTimeStamp, user)],
+                components: [pomEndRow],
             });
+            await deleteUserWorking(authorId);
+            updateDatabase(guildId, authorId, author, work);
 
-            await createUserOnBreak(authorId, author);
-            setTimeout(async () => {
-                let breakCanceled = await isCanceledBreak(authorId);
-                if (breakCanceled) {
-                    console.log("Descanso terminado");
-                    await deleteUserCanceledBreak(authorId);
-                } else {
-                    await channel.send({
-                        target: user,
-                        content: `${user.toString()}`,
-                        embeds: [endBreakEmbed(rest, endbreakTimeStamp, user)],
-                        components: [endBreakRow],
-                    });
-                    await deleteUserOnBreak(authorId);
-                }
-            }, rest * 60000);
-        }
+            if (rest) {
+                await channel.send({
+                    target: user,
+                    content: `${user.toString()}`,
+                    embeds: [startBreakEmbed(rest, breakTimeStamp)],
+                    components: [startBreakRow],
+                });
+
+                await createUserOnBreak(authorId, author);
+                setTimeout(async () => {
+                    let breakCanceled = await isCanceledBreak(authorId);
+                    if (breakCanceled) {
+                        console.log("Descanso terminado");
+                        await deleteUserCanceledBreak(authorId);
+                    } else {
+                        await channel.send({
+                            target: user,
+                            content: `${user.toString()}`,
+                            embeds: [endBreakEmbed(rest, endbreakTimeStamp, user)],
+                            components: [endBreakRow],
+                        });
+                        await deleteUserOnBreak(authorId);
+                    }
+                }, rest * 60000);
+            }
         }
     }, work * 60000);
 };
