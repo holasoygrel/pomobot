@@ -40,12 +40,7 @@ let canStartGroup = async (message) => {
 		await message.reply("```Error: No estas conectado a un canal de voz```");
 		return false;
 
-	} else if (!message.member?.voice?.channel?.name.includes("grupo")) {
-
-		await message.reply("```Error: No estas conectado a un canal de voz de Pomodoro grupal```");
-		return false;
-
-	} else if (message.channel.type === "GUILD_TEXT" && !message.channel.name.includes("grupo")) {
+	} else if (message.channel.type === "GUILD_TEXT" && !message.channel.name.includes("pomobot")) {
 
 		await message.reply("Solo puedes iniciar un Pomodoro grupal en el canal de Pomodoro grupal");
 		return false;
