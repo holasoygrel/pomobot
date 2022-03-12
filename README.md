@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  Inspirado en el bot de <a href="https://github.com/andreidimaano">Andrei Dimaano</a>
+  es una ramificación del bot de <a href="https://github.com/andreidimaano">Andrei Dimaano</a>
   Pomobot es un bot de discord basado en el <a href="https://es.wikipedia.org/wiki/T%C3%A9cnica_Pomodoro"> método de estudio Pomodoro,</a>
  totalmente en español. para añadirlo a tu server click <a href="https://discord.com/api/oauth2/authorize?client_id=856953402872692788&permissions=8&scope=bot">AQUI</a>
 </p>
@@ -12,7 +12,11 @@
   Aquí iran los bugs que se lleguen a encontrar en las funcionalidades del bot
 
 # Ultimas actualizaciones:<br />
-
+- Arreglado el bug de los grupos 
+- Se agrego el ciclo pomodoro 
+- Se cambio de Typescript a JS 
+- Se migro a la version 13 de discordJS
+- Se implemento el registro de los comandos de [/] ;D
 
 # Todos los comandos:<br />
 
@@ -25,9 +29,11 @@
 `% grupo [tiempo]`<br />
 `% cancelar`<br />
 `% productividad`<br />
-`% help`<br />
-`% limpiar`<br />
-`% donar` <br/>
+`% ayuda`<br />
+`% sesionpomodoro`<br />
+`% cancelsesion`<br />
+`% sesiongrupal`<br />
+`% cancelsesiongrupal` <br />
 
 # Explicación de los comandos
 
@@ -42,11 +48,17 @@
 `% grupo [tiempo]` Empieza un pomodoro grupal <br/>
 `% cancelar` cancela el pomodoro o tu tiempo de descanso <br/>
 
+### 🍅 Sesion de Pomodoro<br/>
+`% sesionpomodoro` Inicia una Sesion  Individual de pomodoro que se basa en 4 Pomodoros de 25 min con un descanso corto de 5 minutos entre ellos finalizando con un descanso largo de 15 minutos<br />
+`% cancelsesion` Cancela la Sesion de pomodoro Individual <br />
+`% sesiongrupal` Inicia una Sesion  Grupal de pomodoro que se basa en 4 Pomodoros de 25 min con un descanso corto de 5 minutos entre ellos finalizando con un descanso largo de 15 minutos<br />
+`% cancelsesiongrupal` Cancela la Sesion de pomodoro grupal<br />
+
 ### Como configurar los canales para el Pomodoro Grupal:
 1. Para poder ejecutar los comandos grupales se tiene que crear un Canal de texto que contenga la palabra 'pomobot'.
-2. se tiene que crear un canal de voz con la palabra 'grupal' para que el comando funcione.
+2. se tiene que crear un canal de voz con la palabra para que el comando funcione.
 3. Se tiene que conectar al canal de voz.
-4. Escribir en el canal el comando  ' % '. 
+4. Escribir en el canal el comando  ' % ' o ' / ' . 
 
 ### Reglas para usar el pomodoro grupal
 1. Se debe tener un canal de texto separado que se llame 'pomobot'.
