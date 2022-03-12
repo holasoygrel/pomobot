@@ -10,21 +10,23 @@ let data = new SlashCommandBuilder()
 let helpEmbed = new MessageEmbed()
     .setColor('#dc2f02')
     .setTitle('Comandos')
-    .setFooter({text:'hecho con ♥ por bygrel y piedraprog v 1.0.2'})
+    .setFooter({text:'hecho con ♥ por bygrel y piedraprog v 2.0.0'})
     // .setTimestamp()
     .addFields(
         { name: '% howto', value: 'Explicación de como usar el bot'},
         { name: '% ayuda', value: 'Lista de comandos que tiene el bot'},
         { name: '% pomodoro [numero]', value: 'Inicia un Pomodoro con la duración indicada'},
         { name: '% pomodoro [numero] break [numero]', value: 'Inicia un Pomodoro con la duración indicada'},
+        { name: '% cancelar', value: 'cancela tu pomodoro o descanso'},
         { name: '% grupo [numero] ', value: 'Inicia un Pomodoro grupal con una duración indicada'},
         { name: '% grupo [numero] break [numero]', value: 'Inicia un Pomodoro grupal con un descanso'},
-        { name: '% cancelar', value: 'cancela tu pomodoro o descanso'},
-        { name: '% cancelar grupo', value: 'cancela el pomodoro grupal (tiene que ser el autor del grupo)'},
+        { name: '% cancelargrupo', value: 'cancela el pomodoro grupal (tiene que ser el autor del grupo)'},
+        { name: '% sesionpomodoro', value: 'Inicia un ciclo de pomodro que consta de 4 pomodoros de 25 minutos con un descanso corto entre ellos y al terminar tienes un descanso largo'},
+        { name: '% cancelsesion', value: 'Cancela la Sesion de pomodoro o el descanso que te encuentres'},
+        { name: '% sesiongrupal', value: 'Inicia un ciclo de pomodoro grupal que consta de 4 Pomodoros de 25 minutos con un descanso corto entre ellos y al terminar tienes un descanso largo'},
+        { name: '% cancelsesiongrupal', value: 'Cancela la Sesion Grupal de pomodoro o el descanso que te encuentres'},
         { name: '% rangos', value: 'Tabla de clasificación de usuarios trabajando'},
         { name: '% productividad', value: 'verifica tus estadísticas de lo que has trabajado!'},
-        { name: '% limpiar [numero]', value: 'elimina por una cantidad de mensajes especifica, si no se establece un numero por defecto borrara un total de 100 mensajes, en un máximo de fecha de dos semanas'},
-        { name: '% donar', value: 'en caso de que quieras apoyar el mantenimiento del bot ♥'}
     )
 
 const helpRow = new MessageActionRow().addComponents(
@@ -43,6 +45,11 @@ const helpRow = new MessageActionRow().addComponents(
         .setLabel("Tabla de clasificación")
         .setStyle("SECONDARY")
         .setEmoji("🏆"),
+    new MessageButton()
+        .setCustomId("sesionpomodoro")
+        .setLabel("Dar inicio a la sesion de pomodoro")
+        .setStyle("LINK")
+        .setURL("https://github.com/holasoygrel/pomobot"),
     new MessageButton()
         .setLabel("Github")
         .setStyle("LINK")

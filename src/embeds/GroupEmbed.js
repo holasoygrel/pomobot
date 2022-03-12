@@ -78,7 +78,7 @@ let endGroupBreakEmbed = (duration, timestamp) => {
     .setTitle("Descanso terminado")
     .addFields({
       name: `✅  \`${duration} minutos\``,
-      value: `😌 Espero hayas disfrutado tu descanso!`,
+      value: `😌 Espero hayas disfrutado tu descanso!`, 
     })
     .setTimestamp(timestamp);
 };

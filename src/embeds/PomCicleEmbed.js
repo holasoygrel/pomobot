@@ -1,8 +1,8 @@
-const { MessageActionRow, MessageButton } = require("discord.js");
-const { MessageEmbed } = require("discord.js");
+import { MessageActionRow, MessageButton} from "discord.js";
+import { MessageEmbed } from "discord.js";
 
 
-// MENSAJE DE INCIO DE LA SESION DEL POMODORO
+// MENSAJE DE INICIO DE LA SESION DEL POMODORO
 const pomCicleStartEmbed = (duration) => {
   return new MessageEmbed()
     .setTitle("Sesión Pomodoro iniciado")
@@ -52,6 +52,7 @@ const pomCicleEndRow = new MessageActionRow().addComponents(
     .setEmoji("🏆")
 );
 
+// DESCANSO CORTO
 let startCicleBreakEmbed = (duration, timestamp, cicle) => {
 	return new MessageEmbed()
 		.setColor("#cddafd")
@@ -66,7 +67,7 @@ let startCicleBreakEmbed = (duration, timestamp, cicle) => {
 const startCicleBreakRow = new MessageActionRow().addComponents(
   new MessageButton()
     .setCustomId("cancelsesion")
-    .setLabel("Terminar el descanso corto")
+    .setLabel("Termina el descanso corto")
     .setStyle("SECONDARY")
     .setEmoji("🚫"),
 );

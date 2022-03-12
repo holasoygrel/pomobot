@@ -1,15 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import moment from "moment";
-import {
-    joinVoiceChannel,
-    createAudioPlayer,
-    createAudioResource,
-    entersState,
-    StreamType,
-    AudioPlayerStatus,
-    VoiceConnectionStatus,
-    generateDependencyReport,
-} from "@discordjs/voice";
+
 import { isGroupBreak } from "../database/resolvers/GroupBreakResolver";
 import { groupExists } from "../database/resolvers/GroupPomodoroResolver";
 import {
@@ -43,35 +34,6 @@ import {
 import { updateDatabase } from "../utils/updateDatabase";
 
 
-
-const player = createAudioPlayer();
-
-function playSong() {
-    const resource = createAudioResource("https://www.youtube.com/watch?v=2zgV7f4s03U", {
-        inputType: StreamType.Arbitrary,
-    });
-
-    player.play(resource);
-
-    return entersState(player, AudioPlayerStatus.Playing, 5e3);
-}
-
-async function connectToChannel(channel) {
-    const connection = joinVoiceChannel({
-        channelId: channel.id,
-        guildId: channel.guild.id,
-        adapterCreator: channel.guild.voiceAdapterCreator,
-    });
-
-    try {
-        await entersState(connection, VoiceConnectionStatus.Ready, 30e3);
-        return connection;
-    } catch (error) {
-        connection.destroy();
-        throw error;
-    }
-}
-
 let data = new SlashCommandBuilder()
     .setName("grupo")
     .setDescription("Trabaja con amigos :D")
@@ -103,11 +65,7 @@ let intExe = async (interaction, options) => {
         interaction.channelId
     );
 
-    // console.log("voice: ");
-    // console.log(voice);
-    // console.log("voice channel: ");
-    // console.log(voice.channel);
-
+   
     await interaction.deferReply();
 
     // checks if you can start a group pomodoro
@@ -127,12 +85,7 @@ let intExe = async (interaction, options) => {
             "```Error: no estas conectado a un canal de voz```"
         );
         return;
-    } else if (!channel.name.includes("grupo")) {
-        await interaction.editReply(
-            "```Error: No estas conectado a un canal de voz grupal```"
-        );
-        return;
-    } else if (interaction.channel.type === "GUILD_TEXT" && !interaction.channel.name.includes("grupo")
+    } else if (interaction.channel.type === "GUILD_TEXT" && !interaction.channel.name.includes("pomobot")
     ) {
         await interaction.editReply(
             "```Error: solo puedes iniciar un pomodoro grupal en el canal de texto pomodoro grupal```"
@@ -194,21 +147,6 @@ let intExe = async (interaction, options) => {
                 components: [groupEndRow],
             });
 
-            // YO
-            if (voice.channel) {
-                console.log(generateDependencyReport());
-                let vc = voice.channel;
-                try {
-                    await playSong();
-                    const connection = await connectToChannel(vc);
-                    connection.subscribe(player);
-                    setTimeout(() => connection.destroy(), 4_000);
-                } catch (error) {
-                    console.error(error);
-                }
-            } else {
-                console.log("voice could not play");
-            }
 
             if (rest) {
                 await textChannel.send({
@@ -314,23 +252,6 @@ let mesExe = async (options) => {
                 embeds: [groupEndEmbed(work, breakTimeStamp)],
                 components: [groupEndRow],
             });
-
-            // YO
-            if (voice.channel) {
-                console.log(generateDependencyReport());
-                let vc = voice.channel;
-                try {
-                    await playSong();
-                    const connection = await connectToChannel(vc);
-                    connection.subscribe(player);
-                    setTimeout(() => connection.destroy(), 4_000);
-                } catch (error) {
-                    console.log("\n\nvoice could not play - error: ");
-                    console.error(error);
-                }
-            } else {
-                console.log("\n\nvoice could not play: channel ID not defined");
-            }
 
             if (rest) {
                 await message.channel.send({

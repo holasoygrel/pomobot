@@ -3,7 +3,6 @@ import  { SlashCommandBuilder } from "@discordjs/builders";
 import moment from "moment";
 
 // LIBRERIAS USUARIO
-import  { parseInteractionOptions,parseMessageOptions } from "../utils/parseOptions";
 import  { deleteUserCanceledBreak,deleteUserCanceledPomodoro,isCanceledBreak, isCanceledPomodoro,} from '../database/resolvers/UserCanceledResolver';
 import  { createUserOnBreak, deleteUserOnBreak } from "../database/resolvers/UserOnBreakResolver";
 import  { createUserWorking, deleteUserWorking, isWorking } from "../database/resolvers/UserWorking";
@@ -24,12 +23,12 @@ let intExe = async (interaction, options) => {
     // VARIABLES INCIALES
     let { user, member, guildId } = interaction;
     
-    let work = 2, 
-        rest = 1 ,
+    let work = 25, 
+        rest = 5 ,
         longRes = rest * 3;
 
     let cicleCount = 0;
-    let minute = 5000;
+    let minute = 60000;
     
     let authorId = user.id;
     let author = user.username + user.discriminator;
@@ -176,12 +175,12 @@ let mesExe = async (options) => {
     let { guildId, channel } = message;
     let author = user.username + user.discriminator;
     
-    let work = 2, 
-        rest = 1 ,
+    let work = 25, 
+        rest = 5,
         longRes = rest * 3;
 
     let cicleCount = 0;
-    let minute = 5000;
+    let minute = 60000;
 
     let breakTimeStamp = moment().add(work, "m").toDate();
     let endbreakTimeStamp = moment(breakTimeStamp).add(rest, "m").toDate();
@@ -297,7 +296,7 @@ let mesExe = async (options) => {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("sesionpomodoro")
-        .setDescription("Empieza una sesion de pomodoro de 25 minutos"),
+        .setDescription("Empieza una sesión de pomodoro de 25 minutos"),
     execute: async (interaction, options) => {
         if (interaction !== null) {
             intExe(interaction, options);
