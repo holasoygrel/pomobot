@@ -7,9 +7,9 @@ let data = new SlashCommandBuilder()
 
 let donateEmbed = new MessageEmbed()
     .setColor('#dc2f02')
-    .setTitle('Donar')
-    .setFooter({text:'hecho con ♥ por bygrel y piedraprog v 1.0.2'})
-    .setDescription('Si te gusta el bot y quieres apoyarlo, puedes hacerlo con una donación a la cuenta de paypal de este bot.\n\n' )
+    .setTitle('Contribuye con el mantenimiento')
+    .setFooter({text:'hecho con ♥ por @bygrel y @piedraprog v 2.0.1'})
+    .setDescription('Si te gusta el bot y quieres apoyarlo, puedes hacerlo comprándome un café y asi poder trabajar mejor :D.\n\n' )
 
 const donateRow = new MessageActionRow().addComponents(
     new MessageButton()
@@ -18,7 +18,7 @@ const donateRow = new MessageActionRow().addComponents(
         .setEmoji("☕")
         .setURL("https://ko-fi.com/pomobot"),
     new MessageButton()
-        .setLabel("Github")
+        .setLabel("Ve como estoy hecho :D")
         .setStyle("LINK")
         .setEmoji("💻")
         .setURL("https://github.com/holasoygrel/pomobot")
@@ -28,7 +28,7 @@ const donateRow = new MessageActionRow().addComponents(
 let intExe = async (interaction, options) => {
 
     await interaction.reply({
-        content: `${interaction.user.toString()} gracias por el interés en mantener y usar el bot !`,
+        content: `${interaction.user.toString()} gracias por el interés en mantener y usar el bot 🤩🤩`,
         embeds: [donateEmbed],
         components: [donateRow],
         ephemeral: false,
@@ -39,7 +39,7 @@ let intExe = async (interaction, options) => {
 let mesExe = async (message, options) => {
     await message.react("🙏");
     await message.channel.send({
-        content: `${message.author.toString()}  gracias por el interés en mantener el bot!`,
+        content: `${message.author.toString()}  gracias por el interés en mantener el bot 🤩🤩`,
         embeds: [donateEmbed],
         components: [donateRow],
         ephemeral: false,

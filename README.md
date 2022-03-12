@@ -9,7 +9,7 @@
 </p>
 
 # BUGS
-  Aquí iran los bugs que se lleguen a encontrar en las funcionalidades del bot
+- Poder iniciar un pomodoro individual desde el proceso de uno grupal y viceversa
 
 # Ultimas actualizaciones:<br />
 - Arreglado el bug de los grupos 
