@@ -65,7 +65,7 @@ const main = async () => {
 		(async () => {
 			try {
 				if(config.ENV == "production"){
-					await rest.put(Routes.applicationCommand(CLIENT_ID), {
+					await rest.put(Routes.applicationCommands(CLIENT_ID), {
 						body: commands
 					});
 					console.log("comandos registrados exitosamente de manera global");
