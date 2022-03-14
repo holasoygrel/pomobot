@@ -19,7 +19,6 @@ import  { deleteGroupsBreak } from "./database/resolvers/GroupBreakResolver";
 // Librerias usuario
 import config from './config';
 import './database'
-import { channel } from 'diagnostics_channel';
 
 
 const main = async () => {
@@ -112,6 +111,7 @@ const main = async () => {
 		try {	
 			if (interaction.isButton()) {
 				const { customId } = interaction;
+
 				if (customId === "pomodoro") {
 					await client.commands.get(customId).execute(interaction, {
 						work: 25,
@@ -119,6 +119,18 @@ const main = async () => {
 						error: { pom: "", rest: "" },
 					});
 				} else if (customId === "grupo") {
+					await client.commands.get(customId).execute(interaction, {
+						work: 25,
+						rest: 0,
+						error: { pom: "", rest: "" },
+					});
+				} else if (customId === "sesionpomodoro") {
+					await client.commands.get(customId).execute(interaction, {
+						work: 25,
+						rest: 0,
+						error: { pom: "", rest: "" },
+					});
+				} else if (customId === "sesiongrupal") {
 					await client.commands.get(customId).execute(interaction, {
 						work: 25,
 						rest: 0,
@@ -166,8 +178,11 @@ const main = async () => {
             let interaction = null;
 
             if (command === "grupo") {
-                let validGroupPomodoro = await canStartGroup(message);
-                if (validGroupPomodoro) {
+                
+				let validGroupPomodoro = await canStartGroup(message);
+                
+				console.log("entro a grupo",validPomodoro);
+				if (validGroupPomodoro) {
                     if (!options.work) {
                     	options.work = 25;
                     }
@@ -175,8 +190,32 @@ const main = async () => {
                 }
                 return;
             }
+            if (command === "sesiongrupal") {
+
+                let validSesionGroupPomodoro = await canStartGroup(message);
+                if (validSesionGroupPomodoro) {
+                    if (!options.work) {
+                    	options.work = 25;
+                    }
+                    await client.commands.get("sesiongrupal").execute(interaction, options);
+                }
+                return;
+            }
+
+			if (command === "sesionpomodoro") {
+
+                let validSesionPomodoro = await canStartPomodoro(message);
+                if (validSesionPomodoro) {
+                    if (!options.work) {
+                    	options.work = 25;
+                    }
+                    await client.commands.get("sesionpomodoro").execute(interaction, options);
+                }
+                return;
+            }
 
             if (command === "pom" || command === "pomodoro") {
+				
                 let validPomodoro = await canStartPomodoro(message);
                 if (validPomodoro) {
                     if (!options.work) {

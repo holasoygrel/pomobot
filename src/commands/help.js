@@ -32,48 +32,43 @@ let helpEmbed = new MessageEmbed()
 const helpRow = new MessageActionRow().addComponents(
     new MessageButton()
         .setCustomId("pomodoro")
-        .setLabel("Da incio a un pomodoro de 25 min")
+        .setLabel("Inicia un pomodoro de 25 min")
         .setStyle("SECONDARY")
         .setEmoji("🍅"),
     new MessageButton()
-        .setCustomId("Productividad")
-        .setLabel("Productivity")
+        .setCustomId("grupo")
+        .setLabel("Inicia un pomodoro grupal de 25 min")
         .setStyle("SECONDARY")
-        .setEmoji("📈"),
+        .setEmoji("🍅"),
+    new MessageButton()
+        .setCustomId("sesionpomodoro")
+        .setLabel("Inicia una Sesion de pomodoro")
+        .setStyle("SECONDARY")
+        .setEmoji("🍅"),
     new MessageButton()
         .setCustomId("rangos")
         .setLabel("Tabla de clasificación")
         .setStyle("SECONDARY")
         .setEmoji("🏆"),
     new MessageButton()
-        .setCustomId("sesionpomodoro")
-        .setLabel("Dar inicio a la sesion de pomodoro")
-        .setStyle("LINK")
-        .setURL("https://github.com/holasoygrel/pomobot"),
-    new MessageButton()
-        .setLabel("Github")
-        .setStyle("LINK")
-        .setURL("https://github.com/holasoygrel/pomobot"),
-    new MessageButton()
-        .setCustomId("Apoyar")
+        .setCustomId("donar")
         .setLabel("Apoya el mantenimiento del bot ♥")
-        .setStyle("PRIMARY")
-        .setEmoji("🙏")
+        .setStyle("PRIMARY"),
 );
 
 let intExe = async (interaction, options) => {
     await interaction.reply({
-        content: `${interaction.user.toString()} Bien, Como si mover elefantes con las manos no fuese \'suficiente !`,
+        content: `${interaction.user.toString()} Aquí están los comandos para saber como trabajo 👷‍♂️!`,
         embeds: [helpEmbed],
         components: [helpRow],
-        ephemeral: false,
+        // ephemeral: false,
     });
 };
   
 let mesExe = async (message) => {
-    await message.react("🙄");
+    await message.react("☺");
     await message.channel.send({
-        content: `${message.author.toString()} Bien, Como si mover elefantes con las manos no fuese suficiente !`,
+        content: `${message.author.toString()} Aquí están los comandos para saber como trabajo 👷‍♂️!`,
         embeds: [helpEmbed],
         components: [helpRow],
     });
@@ -81,7 +76,6 @@ let mesExe = async (message) => {
   
 let execute = async (interaction, options) => {
     if (interaction !== null) {
-        
         intExe(interaction, options);
     } else {
         mesExe(options.message);
