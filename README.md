@@ -5,7 +5,7 @@
 <p align="center">
   es una ramificación del bot de <a href="https://github.com/andreidimaano">Andrei Dimaano</a>
   Pomobot es un bot de discord basado en el <a href="https://es.wikipedia.org/wiki/T%C3%A9cnica_Pomodoro"> método de estudio Pomodoro,</a>
- totalmente en español. para añadirlo a tu server click <a href="https://discord.com/api/oauth2/authorize?client_id=856953402872692788&permissions=8&scope=bot">AQUI</a>
+ totalmente en español. para añadirlo a tu server click <a href="https://discord.com/api/oauth2/authorize?client_id=856953402872692788&permissions=8&scope=bot%20applications.commands">AQUI</a>
 </p>
 
 # BUGS
