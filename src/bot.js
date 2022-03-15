@@ -181,7 +181,6 @@ const main = async () => {
                 
 				let validGroupPomodoro = await canStartGroup(message);
                 
-				console.log("entro a grupo",validPomodoro);
 				if (validGroupPomodoro) {
                     if (!options.work) {
                     	options.work = 25;
