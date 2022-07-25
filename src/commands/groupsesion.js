@@ -37,7 +37,7 @@ let intExe = async (interaction) => {
         longRes = rest * 3;
 
     let cicleCount = 0;
-    let minute = 60000;
+    let minute = 1000;
 
     let { user, member, guildId, channelId } = interaction;
     let { id, username, discriminator } = user;
