@@ -39,7 +39,7 @@ let intExe = async (interaction) => {
             );
         }
     } else if (currentlyOnBreak) {
-        await deleteGroupBreak(channel.Id);
+        await deleteGroupBreak(channelId);
         await createGroupCanceled(guildId, channelId, true);
         await interaction.editReply("Descanso Terminado");
     } else if (!currentlyOnBreak && !currentlyWorking) {

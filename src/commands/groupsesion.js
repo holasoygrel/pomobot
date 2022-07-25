@@ -37,7 +37,7 @@ let intExe = async (interaction) => {
         longRes = rest * 3;
 
     let cicleCount = 0;
-    let minute = 60000;
+    let minute = 1000;
 
     let { user, member, guildId, channelId } = interaction;
     let { id, username, discriminator } = user;
@@ -147,36 +147,28 @@ let intExe = async (interaction) => {
         }    
 
         // VERIFICATION IF SESIÓN IS ON LAST STAGE 
-        if(cicleCount == 3 && !canceledGroup){
-
-            console.log("descanso largo inicio")
-            
+        if(cicleCount === 3 && !canceledGroup){           
             await channel.send({
                 target: user,
                 content: `${user.toString()} descanso largo inicio`,
                 embeds: [startSesionGroupLongBreakEmbed(work, breakTimeStamp, user)],
                 components: [startSesionGroupLongBreakRow],
             });
-            
             // DESCANSO LARGO
             setTimeout(async () =>{
-
                 await channel.send({
                     target: user,
                     content: `${user.toString()}`,
                     embeds: [endSesionGroupLongBreakEmbed(work, breakTimeStamp)],
                     components: [endSesionGroupLongBreakRow],
                 });
-
             },longRes * minute)
-
             clearInterval(groupCicle)
             
         }else if(rest && cicleCount < 3 && !canceledGroup){
 
             let members = [...channel.members.values()];
             let usersToPing = "";
-            
             members.forEach((member) => {
                 if (!member.user.bot) {
                     usersToPing = usersToPing.concat(
@@ -184,15 +176,12 @@ let intExe = async (interaction) => {
                     );
                 }
             });
-
             await textChannel.send({
                 content: usersToPing,
                 embeds: [startSesionGroupBreakEmbed(rest, breakTimeStamp,cicleCount)],
                 components: [startSesionGroupBreakRow],
             });
-
             await createGroupBreak(channelId, authorId, authorTag);
-
             // DESCANSO  CORTO
             setTimeout(async () => {
 
